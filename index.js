@@ -1,8 +1,8 @@
-let nextBtn = document.getElementById("next-btn");
-let prevBtn = document.getElementById("prev-btn");
-let slideContainer = document.getElementById("slideshow-container");
+const nextBtn = document.getElementById("next-btn");
+const prevBtn = document.getElementById("prev-btn");
+const slideContainer = document.getElementById("slideshow-container");
 const slides = document.getElementById("slides");
-let dotContainer=document.getElementById("dot-container");
+const dotContainer=document.getElementById("dot-container");
 
 
 var imageIndex = 0;
@@ -38,8 +38,8 @@ const createDots=()=>{
     }
 }
 createDots()
-let slideImages = document.querySelectorAll(".image");
-let dots = document.querySelectorAll(".dot");
+const slideImages = document.querySelectorAll(".image");
+const dots = document.querySelectorAll(".dot");
 console.log(dots);
 slideImages.forEach((slide, index) => {
   slide.style.left = `${index * 100}%`;
