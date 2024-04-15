@@ -23,7 +23,8 @@ body {
 
 #slideshow-container #slides {
   width: 100%;
-  height: calc(100% - 40px);
+  height: 100%;
+  background: transparent;
   position: relative;
   overflow: hidden;
 }
@@ -74,6 +75,7 @@ span#prev-btn:hover {
 
 #dot-container {
   position: absolute;
+  /* background: transparent; */
   bottom: 5px;
   z-index: 3;
   left: 50%;
@@ -84,7 +86,7 @@ span#prev-btn:hover {
   width: 15px;
   height: 15px;
   margin: 0px 2px;
-  border: 3px solid #000;
+  border: 3px solid #fff;
   border-radius: 50%;
   display: inline-block;
   transition: background-color 0.6s ease;
@@ -92,7 +94,7 @@ span#prev-btn:hover {
 }
 
 #dot-container .active {
-  background-color: #000;
+  background-color: #fff;
 }
 
 .hide {
@@ -105,11 +107,6 @@ span#prev-btn:hover {
     height: 200px;
   }
 
-  #slideshow-container #slides {
-    width: 100%;
-    height: calc(100% - 30px);
-  }
-
   .buttons span#next-btn,
   span#prev-btn {
     padding: 8px;
@@ -120,7 +117,7 @@ span#prev-btn:hover {
     width: 10px;
     height: 10px;
     margin: 0px 0.5px;
-    border: 2px solid #000;
+    border: 2px solid #fff;
   }
 }
 
@@ -146,10 +143,6 @@ span#prev-btn:hover {
     height: 300px;
   }
 
-  #slideshow-container #slides {
-    height: calc(100% - 35px);
-  }
-
   .buttons span#next-btn,
   span#prev-btn {
     padding: 12px;
@@ -169,10 +162,6 @@ span#prev-btn:hover {
     height: 300px;
   }
 
-  #slideshow-container #slides {
-    height: calc(100% - 40px);
-  }
-
   .buttons span#next-btn,
   span#prev-btn {
     padding: 14px;
@@ -183,7 +172,7 @@ span#prev-btn:hover {
     width: 13px;
     height: 13px;
     margin: 0px 2px;
-    border: 3px solid #000;
+    border: 3px solid #fff;
   }
 }
 
@@ -191,10 +180,6 @@ span#prev-btn:hover {
   #slideshow-container {
     width: 900px;
     height: 350px;
-  }
-
-  #slideshow-container #slides {
-    height: calc(100% - 40px);
   }
 
   .buttons span#next-btn,
@@ -207,7 +192,7 @@ span#prev-btn:hover {
     width: 15px;
     height: 15px;
     margin: 0px 2.5px;
-    border: 3px solid #000;
+    border: 3px solid #fff;
   }
 }
 
@@ -215,10 +200,6 @@ span#prev-btn:hover {
   #slideshow-container {
     width: 1500px;
     height: 600px;
-  }
-
-  #slideshow-container #slides {
-    height: calc(100% - 60px);
   }
 
   .buttons span#next-btn,
@@ -235,6 +216,6 @@ span#prev-btn:hover {
     width: 20px;
     height: 20px;
     margin: 0px 5px;
-    border: 3px solid #000;
+    border: 3px solid #fff;
   }
 }

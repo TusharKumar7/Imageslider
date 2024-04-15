@@ -2,10 +2,9 @@ const nextBtn = document.getElementById("next-btn");
 const prevBtn = document.getElementById("prev-btn");
 const slideContainer = document.getElementById("slideshow-container");
 const slides = document.getElementById("slides");
-const dotContainer=document.getElementById("dot-container");
+const slidingBulletContainer=document.getElementById("dot-container");
 
-
-var imageIndex = 0;
+let imageIndex = 0;
 
 const imgData={
     "images":[
@@ -30,17 +29,17 @@ const createImages = () => {
 
 createImages();
 
-const createDots=()=>{
+const createBullets=()=>{
     for(let i=0;i<imgData.images.length;i++){
-        const sliderDot=document.createElement("div");
-        sliderDot.classList.add('dot')
-        dotContainer.appendChild(sliderDot)
+        const slideraBullet=document.createElement("div");
+        slideraBullet.classList.add('dot')
+        slidingBulletContainer.appendChild(slideraBullet)
     }
 }
-createDots()
+createBullets()
+
 const slideImages = document.querySelectorAll(".image");
-const dots = document.querySelectorAll(".dot");
-console.log(dots);
+const imageSlidingbullets = document.querySelectorAll(".dot");
 slideImages.forEach((slide, index) => {
   slide.style.left = `${index * 100}%`;
 });
@@ -55,43 +54,40 @@ const showBtn = () => {
 };
 showBtn();
 
-const dotHandler = () => {
-  dots.forEach((dot, index) => {
+const bulletHandler = () => {
+  imageSlidingbullets.forEach((dot, index) => {
     imageIndex === index
       ? dot.classList.add("active")
       : dot.classList.remove("active");
   });
 };
-dotHandler();
+bulletHandler();
 
-dots.forEach((dot, i) => {
+imageSlidingbullets.forEach((dot, i) => {
   dot.addEventListener("click", () => {
     imageIndex = i;
-    changeSlide();
+    imageSlide();
   });
 });
 
-const changeSlide = () => {
-  //   console.log("change slide called");
+const imageSlide = () => {
   slideImages.forEach((slide) => {
     slide.style.transform = `translateX(-${imageIndex * 100}%)`;
   });
-  dotHandler();
+  bulletHandler();
   showBtn();
 };
 
 nextBtn.addEventListener("click", () => {
-  //   console.log("nextBtn called");
   if (imageIndex === slideImages.length - 1) return imageIndex;
   imageIndex++;
-  changeSlide();
+  imageSlide();
 });
 
 prevBtn.addEventListener("click", () => {
-  //   console.log("prevBtn called");
   if (imageIndex === 0) return imageIndex;
   imageIndex--;
-  changeSlide();
+  imageSlide();
 });
 
 let autoSlideInterval = null;
@@ -99,7 +95,7 @@ const autoPlaySlide = () => {
   autoSlideInterval = setInterval(() => {
     if (imageIndex === slideImages.length - 1) imageIndex = -1;
     imageIndex++;
-    changeSlide();
+    imageSlide();
     showBtn();
   }, 3000);
 };
