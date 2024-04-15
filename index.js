@@ -2,41 +2,39 @@ const nextBtn = document.getElementById("next-btn");
 const prevBtn = document.getElementById("prev-btn");
 const slideContainer = document.getElementById("slideshow-container");
 const slides = document.getElementById("slides");
-const slidingDotContainer=document.getElementById("dot-container");
+const slidingDotContainer = document.getElementById("dot-container");
 
 let imageIndex = 0;
 
-const imgData={
-    "images":[
-        "./images/img1.jpeg",
-        "./images/img2.jpeg",
-        "./images/img3.jpeg",
-        "./images/img4.jpeg",
-        "./images/img5.jpeg",
-        "./images/img6.jpeg",
-        "./images/img7.jpeg",
-    ]
-}
+const imgData = [
+  "./images/img1.jpeg",
+  "./images/img2.jpeg",
+  "./images/img3.jpeg",
+  "./images/img4.jpeg",
+  "./images/img5.jpeg",
+  "./images/img6.jpeg",
+  "./images/img7.jpeg",
+];
 
 const createImages = () => {
-    for (let i = 0; i < imgData.images.length; i++) {
-        const image = document.createElement("img");
-        image.src = imgData.images[i];
-        image.classList.add("image");
-        slides.appendChild(image);
-    }
+  for (let i = 0; i < imgData.length; i++) {
+    const image = document.createElement("img");
+    image.src = imgData[i];
+    image.classList.add("image");
+    slides.appendChild(image);
+  }
 };
 
 createImages();
 
-const createSliderDots=()=>{
-    for(let i=0;i<imgData.images.length;i++){
-        const imageSliderDot=document.createElement("div");
-        imageSliderDot.classList.add('dot')
-        slidingDotContainer.appendChild(imageSliderDot)
-    }
-}
-createSliderDots()
+const createSliderDots = () => {
+  for (let i = 0; i < imgData.length; i++) {
+    const imageSliderDot = document.createElement("div");
+    imageSliderDot.classList.add("dot");
+    slidingDotContainer.appendChild(imageSliderDot);
+  }
+};
+createSliderDots();
 
 const slideImages = document.querySelectorAll(".image");
 const imageSliderDots = document.querySelectorAll(".dot");
