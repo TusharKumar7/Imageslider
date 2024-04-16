@@ -3,7 +3,9 @@ const prevBtn = document.getElementById("prev-btn");
 const slideContainer = document.getElementById("slideshow-container");
 const slides = document.getElementById("slides");
 const slidingDotContainer = document.getElementById("dot-container");
+const numberOfImage = document.getElementById("number-of-image");
 
+let amountOfImagesInFrame = 1;
 let imageIndex = 0;
 
 const imgData = [
@@ -13,7 +15,6 @@ const imgData = [
   "./images/img4.jpeg",
   "./images/img5.jpeg",
   "./images/img6.jpeg",
-  "./images/img7.jpeg",
 ];
 
 const createImages = () => {
@@ -24,30 +25,46 @@ const createImages = () => {
     slides.appendChild(image);
   }
 };
-
 createImages();
 
+let imageSliderDots = [];
+
 const createSliderDots = () => {
-  for (let i = 0; i < imgData.length; i++) {
+  const numberOfDots = Math.ceil(imgData.length / amountOfImagesInFrame);
+
+  for (let i = 0; i < numberOfDots; i++) {
     const imageSliderDot = document.createElement("div");
     imageSliderDot.classList.add("dot");
     slidingDotContainer.appendChild(imageSliderDot);
+    imageSliderDots.push(imageSliderDot);
   }
 };
 createSliderDots();
 
 const slideImages = document.querySelectorAll(".image");
-const imageSliderDots = document.querySelectorAll(".dot");
 
 slideImages.forEach((slide, index) => {
   slide.style.left = `${index * 100}%`;
+});
+
+numberOfImage.addEventListener("change", (e) => {
+  e.preventDefault();
+  amountOfImagesInFrame = numberOfImage.selectedIndex + 1;
+  slidingDotContainer.innerHTML = "";
+  imageSliderDots = [];
+  imageIndex = 0;
+  count = 0;
+  numberOfDots = 0;
+  createSliderDots();
+  imageSlide();
+  showArrowButton();
 });
 
 const showArrowButton = () => {
   imageIndex === 0
     ? prevBtn.classList.add("hide")
     : prevBtn.classList.remove("hide");
-  imageIndex === slideImages.length - 1
+  imageIndex === imageSliderDots.length - 1
     ? nextBtn.classList.add("hide")
     : nextBtn.classList.remove("hide");
 };
@@ -69,16 +86,35 @@ imageSliderDots.forEach((dot, i) => {
   });
 });
 
+let count = 0;
 const imageSlide = () => {
-  slideImages.forEach((slide) => {
-    slide.style.transform = `translateX(-${imageIndex * 100}%)`;
+  const totalCycles = Math.ceil(imgData.length / amountOfImagesInFrame);
+  const frameWidthPercentage = 100 / amountOfImagesInFrame;
+  slideImages.forEach((slide, i) => {
+    slide.style.width = `${frameWidthPercentage}%`;
+    slide.style.left = `${i * frameWidthPercentage}%`;
+    if (amountOfImagesInFrame == 3 && count < totalCycles) {
+      slide.style.transform = `translateX(-${imageIndex * 300}%)`;
+    } else if (amountOfImagesInFrame == 2 && count < totalCycles) {
+      slide.style.transform = `translateX(-${imageIndex * 200}%)`;
+    } else if (amountOfImagesInFrame == 1 && count < totalCycles) {
+      slide.style.transform = `translateX(-${imageIndex * 100}%)`;
+    } else {
+      return;
+    }
   });
+  if (count >= totalCycles) {
+    count = 0;
+  } else {
+    count++;
+  }
+
   sliderDotHandler();
   showArrowButton();
 };
 
 nextBtn.addEventListener("click", () => {
-  if (imageIndex === slideImages.length - 1) return imageIndex;
+  if (imageIndex === imageSliderDots.length - 1) return imageIndex;
   imageIndex++;
   imageSlide();
 });
@@ -92,10 +128,11 @@ prevBtn.addEventListener("click", () => {
 let autoSlideInterval = null;
 const autoPlaySlide = () => {
   autoSlideInterval = setInterval(() => {
-    if (imageIndex === slideImages.length - 1) imageIndex = -1;
+    if (imageIndex === imageSliderDots.length - 1) imageIndex = -1;
     imageIndex++;
     imageSlide();
     showArrowButton();
+    count = 0;
   }, 3000);
 };
 autoPlaySlide();

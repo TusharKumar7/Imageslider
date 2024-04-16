@@ -8,9 +8,20 @@ body {
   width: 100%;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
+  gap: 20px;
   justify-content: center;
   align-items: center;
   background-color: #fffbeb;
+}
+
+#select-box{
+  font-size: 1rem;
+}
+
+#select-box select{
+  font-size: 1rem;
+  padding: 3px;
 }
 
 #slideshow-container {
@@ -107,6 +118,11 @@ span#prev-btn:hover {
     height: 200px;
   }
 
+  #select-box select{
+    font-size: 1rem;
+    padding: 1px;
+  }
+
   .buttons span#next-btn,
   span#prev-btn {
     padding: 8px;
@@ -157,6 +173,10 @@ span#prev-btn:hover {
 }
 
 @media screen and (min-width: 1024px) {
+  #select-box{
+    font-size: 1.2rem;
+  }
+
   #slideshow-container {
     width: 800px;
     height: 300px;
@@ -177,6 +197,15 @@ span#prev-btn:hover {
 }
 
 @media screen and (min-width: 1440px) {
+  #select-box{
+    font-size: 1.4rem;
+  }
+
+  #select-box select{
+    font-size: 1rem;
+    padding: 2px;
+  }
+
   #slideshow-container {
     width: 900px;
     height: 350px;
@@ -197,6 +226,19 @@ span#prev-btn:hover {
 }
 
 @media screen and (min-width: 2560px) {
+  body {
+    gap: 30px;
+  }
+
+  #select-box{
+    font-size: 2rem;
+  }
+
+  #select-box select{
+    font-size: 1.4rem;
+    padding: 6px 6px 2px 6px;
+  }
+
   #slideshow-container {
     width: 1500px;
     height: 600px;
